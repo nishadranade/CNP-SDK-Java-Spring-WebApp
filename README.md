@@ -1,2 +1,3 @@
 # newWebApp
-New approach, use Maven and JSPs
+Old approach, pop ups and hopefully checkboxes
+
