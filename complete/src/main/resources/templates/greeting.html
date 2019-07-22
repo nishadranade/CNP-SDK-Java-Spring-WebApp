@@ -1,0 +1,170 @@
+
+<div class ="jumbotron text-center">
+    <h1>Worldpay - Java SDK Web Application</h1>
+</div>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+
+<body>
+<form id="form2" action="#" th:action="@{/home}" th:object="${greeting}" method="POST"> 
+    <h3>Configuration</h3>
+
+    <br>URL:
+    <br>
+    <input type="text" th:field="*{url}" name="url" >
+    <br>Proxy Host:
+    <br>
+    <input type="text" th:field="*{proxyHost}" name="proxyHost">
+    <br>Proxy Port:
+    <br>
+    <input type="text" th:field="*{proxyPort}" name="proxyPort">
+    <br>
+    <br>User:
+    <br>
+    <input type="text" th:field="*{user}" name="user">
+    <br>Password:
+    <br>
+    <input type="text" th:field="*{password}" name="password">
+    <br>Merchant ID:
+    <br>
+    <input type="text" th:field="*{merchantId}" name="merchant_id">
+    <br>
+
+    <br>
+    <div>
+        <style type="text/css">
+            td {
+                vertical-align: top;
+            }
+        </style>
+        <table width="70%">
+            <tr>
+                <td width="35%">
+                    <h3>Simple Auth </h3> <!--<input type="checkbox" value="checkbox1" name="checkbox1"/></h3> -->
+                    Report Group:
+                    <br>
+                    <input type="text" th:field="*{authReportGroup}" name="auth_report_group">
+                    <br>Order ID:
+                    <br>
+                    <input type="text" th:field="*{orderId}" name="order_id">
+                    <br>Amount:
+                    <br>
+                    <input type="text" th:field="*{authAmount}" name="auth_amount" >
+                    <br>Order Source(ecommerce, retail, androidpay, applepay etc.):
+                    <br>
+                    <input type="text" th:field="*{authOrderSource}" name="auth_order_source">
+                    <br>ID:
+                    <br>
+                    <input type="text" th:field="*{authId}" name="auth_id">
+                    <br>Card Number:
+                    <br>
+                    <input type="text" th:field="*{cardNumber}" name="card_number">
+                    <br>Expiration Date:
+                    <br>
+                    <input type="text" th:field="*{expirationDate}" name="exp_date">
+                    <br>Card Type (VI,MC,AX,DC,DI etc.):
+                    <br>
+                    <input type="text" th:field="*{cardType}" name="card_type">
+                    <br />
+                </td>
+                <td width="35%">
+                    <h3>Simple Capture </h3> <!--<input type="checkbox" th:field="*{capCheck}" th:value="*{capCheck}" value="captureCheckbox"/></h3> -->
+                    Report Group:
+                    <br>
+                    <input type="text" th:field="*{captureReportGroup}" name="capture_report_group">
+                    <br>CNP Txn ID:
+                    <br>
+                    <input type="text" th:field="*{cnpTxnId}" name="cnp_txn_id">
+                    <br>Amount:
+                    <br>
+                    <input type="text" th:field="*{captureAmount}" name="capture_amount">
+                    <br>ID:
+                    <br>
+                    <input type="text" th:field="*{captureId}" name="capture_id">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!--<h3>Auth Response</h3>
+
+                </td>
+                <td>
+                    <h3>Capture Response</h3> -->
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <input type="Submit" id="submittwo" name="submittwo">
+
+</form>
+
+<table id="table1" action="#" th:action="@{/home}" method="GET">
+<h3>Authorization Response</h3>
+    <p th:text = " ${processCapture.xmlAuthResponse}" />
+</table>
+
+<table id="table2" action="#" th:action="@{/home}" method="GET">
+<h3>Capture Response</h3>
+    <p th:text = " ${processCapture.xmlCaptureResponse}" />
+</table>
+
+</body>
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        height: 29px;
+        width: 188px;
+    }
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+        height: 29px;
+        width: 188px;
+    }
+</style>
+</html>
+
+
+
+
+<!--{% if capture %}
+<h2>Capture Response</h2>
+ {{capture}} -->
+<!-- {% endif %} -->
+
+<!-- {% if auth %} -->
+<!-- <h2>Auth Response</h2> -->
+<!-- {{auth}}
+{% endif %}
+
+{% endblock %} -->
+
+<!--
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Id: <input type="text" th:field="*{user}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
+
+-->

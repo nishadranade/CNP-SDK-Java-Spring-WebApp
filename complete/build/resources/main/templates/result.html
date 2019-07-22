@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<!--
+<body>
+	<h1>Result</h1>
+    <p th:text="'url: ' + ${greeting.url}" />
+    <p th:text="'password: ' + ${greeting.password}" />
+    <p th:text="'user: ' + ${greeting.user}" />
+    <p th:text="'merchantId: ' + ${greeting.merchantId}" />
+    <p th:text=" 'proxyHost: ' + ${greeting.proxyHost}" />
+    <a href="/home">Submit another message</a>
+</body>
+-->
+<body>
+    <h2>Response</h2>
+    <h3>Authorization Response</h3>
+    <p th:text = " ${processCapture.xmlAuthResponse}" />
+    <h3>Capture Response</h3>
+    <p th:text = " ${processCapture.xmlCaptureResponse}" />
+    <a href="/home">Submit another message</a>
+
+</body>
+</html>
