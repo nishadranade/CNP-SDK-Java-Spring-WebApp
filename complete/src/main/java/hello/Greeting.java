@@ -6,6 +6,17 @@ import com.cnp.sdk.generate.*;
 
 public class Greeting {
 
+    // error String
+    private String error;
+
+    public String getError(){
+        return this.error;
+    }
+
+    public void setError(String e){
+        this.error=e;
+    }
+
     // config variables
     private String url;
     private String proxyHost;

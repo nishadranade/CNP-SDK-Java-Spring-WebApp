@@ -21,15 +21,14 @@ public class GreetingController {
     }
 
     // @PostMapping("/greeting")
-    // public void checkboxCheck(@RequestParam(value = "checkbox1", required=false))
-    // String checkboxValue){
-    // if(checkboxValue != null){
-    // System.out.println("checkbox is checked");
-    // }
-    // else{
-    // System.out.println("checkbox is unchecked");
-    // }
-    // }
+    // public void checkboxCheck(@RequestParam(value = "checkbox1") String checkboxValue){
+    //         if(checkboxValue != null){
+    //             System.out.println("checkbox is checked");
+    //         }
+    //         else{
+    //             System.out.println("checkbox is unchecked");
+    //         }
+    //     }
 
     @PostMapping("/home")
     public String greetingSubmit(Model model, @ModelAttribute Greeting greeting,
@@ -37,11 +36,20 @@ public class GreetingController {
         processCapture.configure(greeting);
         boolean isAuth = !greeting.getAuthReportGroup().equals("") && !greeting.getOrderId().equals("") && !greeting.getAuthAmount().equals("") && !greeting.getAuthId().equals("") && !greeting.getExpirationDate().equals("");
         if (isAuth) {
-            AuthorizationResponse authResponse = processCapture.simpleAuth(greeting);
+            try{AuthorizationResponse authResponse = processCapture.simpleAuth(greeting);}
+            catch(Exception e){
+                greeting.setError(e.getMessage());
+                return "errors";
+            }
         }
         boolean isCapture = !greeting.getCnpTxnId().equals("") && !greeting.getCaptureId().equals("") && !greeting.getCaptureReportGroup().equals("") && !greeting.getCaptureAmount().equals("");
         if (isCapture) {
-            CaptureResponse response = processCapture.simpleCapture(greeting);
+            try{
+                CaptureResponse response = processCapture.simpleCapture(greeting);}
+            catch(Exception e){
+                greeting.setError(e.getMessage());
+                return "errors";
+            }
         }
         return "greeting";
     }
