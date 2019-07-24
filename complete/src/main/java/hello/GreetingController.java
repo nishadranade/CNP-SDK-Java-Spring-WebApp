@@ -1,6 +1,5 @@
 package hello;
 
-//import org.springframework.messaging.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,28 +24,21 @@ public class GreetingController {
         return "greeting";
     }
 
-    // @PostMapping("/greeting")
-    // public void checkboxCheck(@RequestParam(value = "checkbox1") String checkboxValue){
-    //         if(checkboxValue != null){
-    //             System.out.println("checkbox is checked");
-    //         }
-    //         else{
-    //             System.out.println("checkbox is unchecked");
-    //         }
-    //     }
-
     @PostMapping("/home")
     public String greetingSubmit(Model model, @ModelAttribute Greeting greeting,
             @ModelAttribute ProcessCapture processCapture) {
         processCapture.configure(greeting);
-        
+        boolean isConfig = !greeting.getUrl().equals("") && !greeting.getUser().equals("") && !greeting.getPassword().equals("") && !greeting.getMerchantId().equals("");
         boolean isAuth = !greeting.getAuthReportGroup().equals("") && !greeting.getOrderId().equals("") && !greeting.getAuthAmount().equals("") && !greeting.getAuthId().equals("") && !greeting.getExpirationDate().equals("");
+        if(!isAuth){
+            JOptionPane.showMessageDialog(null, "Incomplete configuration", "Warning", JOptionPane.PLAIN_MESSAGE);
+        }
         if (isAuth) {
             try{AuthorizationResponse authResponse = processCapture.simpleAuth(greeting);}
             catch(Exception e){
                 greeting.setError(e.getMessage());
                 JOptionPane.showMessageDialog(null, greeting.getError(), "Error", JOptionPane.PLAIN_MESSAGE);
-                return "errors";
+                return "greeting";
             }
         }
         boolean isCapture = !greeting.getCnpTxnId().equals("") && !greeting.getCaptureId().equals("") && !greeting.getCaptureReportGroup().equals("") && !greeting.getCaptureAmount().equals("");
