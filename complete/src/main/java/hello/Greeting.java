@@ -6,6 +6,17 @@ import com.cnp.sdk.generate.*;
 
 public class Greeting {
 
+    private boolean check;
+
+	public boolean getCheck() {
+		return this.check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
+
     // error String
     private String error;
 
