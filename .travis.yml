@@ -1,0 +1,12 @@
+language: java
+
+env:
+ global:
+  - BUILD_DIR=`pwd`
+  - CHARGEBACK_CONFIG_DIR=$BUILD_DIR
+script:
+ - echo $BUILD_DIR
+ - cd $BUILD_DIR/complete
+ - ./gradlew -Dorg.gradle.warning.mode=summary build kit
+after_success:
+ - bash <(curl -s https://codecov.io/bash)
