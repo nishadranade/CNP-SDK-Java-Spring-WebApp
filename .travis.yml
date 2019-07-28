@@ -1,6 +1,4 @@
 language: java
-install: true
-jdk: oraclejdk8
 
 env:
  global:
@@ -9,4 +7,4 @@ env:
 script:
  - echo $BUILD_DIR
  - cd $BUILD_DIR
- - gradle build
+ - ./gradlew build
